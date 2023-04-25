@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:app_ipue/pages/dashborad.dart';
+import 'package:app_ipue/pages/map_iglesias.dart';
 import 'package:app_ipue/utilities/widgets_utils.dart';
 import 'package:http/http.dart' as http;
 
@@ -66,6 +67,8 @@ class _SplashMapPageState extends State<SplashMapPage> {
     box.write('myLongitud', position.longitude.toString());
 
     getAddressFromLatLong(position);
+    print("Vslor: ");
+    print(position.latitude.toString());
 
     return position;
   }
@@ -143,7 +146,7 @@ class _SplashMapPageState extends State<SplashMapPage> {
       child: GestureDetector(
         onTap: () {
           login();
-          Get.to(const Dashboard());
+          Get.to(const MapIglesias());
         },
         child: Container(
           decoration: const BoxDecoration(

@@ -38,17 +38,6 @@ class _MapIglesiasState extends State<MapIglesias>
 
   var circleMarkers = <CircleMarker>[];
 
-  List<ItemModel> menuItems = [
-    ItemModel('复制', Icons.content_copy),
-    ItemModel('转发', Icons.send),
-    ItemModel('收藏', Icons.collections),
-    ItemModel('删除', Icons.delete),
-    ItemModel('多选', Icons.playlist_add_check),
-    ItemModel('引用', Icons.format_quote),
-    ItemModel('提醒', Icons.add_alert),
-    ItemModel('搜一搜', Icons.search),
-  ];
-
   @override
   void initState() {
     myInit();
@@ -64,7 +53,10 @@ class _MapIglesiasState extends State<MapIglesias>
         "X-Authorization": "ipue ${box.read('token')}",
       };
 
-      var url = Uri.parse('${IpueColors.urlHost}/getIglesias.php');
+      String distancia = "5";
+
+      var url = Uri.parse(
+          "${IpueColors.urlHost}/getIglesias.php?lat=${box.read('myLatitud').toString()}&log=${box.read('myLongitud').toString()}&distancia=$distancia");
       var response = await http.get(url, headers: headers);
       var decodeJson = jsonDecode(response.body);
 
@@ -75,7 +67,7 @@ class _MapIglesiasState extends State<MapIglesias>
             borderStrokeWidth: 1,
             borderColor: IpueColors.cSecundario,
             useRadiusInMeter: true,
-            radius: radio // 2000 meters | 2 km
+            radius: double.parse("5000") // radio // 2000 meters | 2 km
             ),
       ];
 
@@ -84,7 +76,7 @@ class _MapIglesiasState extends State<MapIglesias>
         numEncontrados = listaIglesias.iglesias!.length.toString();
       });
     } finally {
-      _myLocation();
+      // _myLocation();
     }
   }
 
@@ -168,7 +160,7 @@ class _MapIglesiasState extends State<MapIglesias>
       mapController: mapController,
       options: MapOptions(
         center: LatLng(latitud, longitud),
-        zoom: 17.2,
+        zoom: 12,
       ),
       nonRotatedChildren: [
         AttributionWidget.defaultWidget(
@@ -184,6 +176,9 @@ class _MapIglesiasState extends State<MapIglesias>
             'mapStyleId': AppConstants.mapBoxStyleId,
             'accessToken': AppConstants.mapBoxAccessToken,
           },
+        ),
+        CircleLayer(
+          circles: circleMarkers,
         ),
         MarkerLayer(
           markers: [
@@ -250,9 +245,6 @@ class _MapIglesiasState extends State<MapIglesias>
               ),
           ],
         ),
-        /*CircleLayer(
-          circles: circleMarkers,
-        ),*/
       ],
     );
   }
