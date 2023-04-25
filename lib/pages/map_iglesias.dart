@@ -53,6 +53,38 @@ class _MapIglesiasState extends State<MapIglesias>
         "X-Authorization": "ipue ${box.read('token')}",
       };
 
+      var url = Uri.parse("${IpueColors.urlHost}/getIglesias.php");
+      var response = await http.get(url, headers: headers);
+      var decodeJson = jsonDecode(response.body);
+
+      circleMarkers = [
+        CircleMarker(
+            point: LatLng(latitud, longitud),
+            color: IpueColors.cPrimario.withOpacity(.5),
+            borderStrokeWidth: 1,
+            borderColor: IpueColors.cSecundario,
+            useRadiusInMeter: true,
+            radius: double.parse("5000") // radio // 2000 meters | 2 km
+            ),
+      ];
+
+      setState(() {
+        listaIglesias = IglesiasModel.fromJson(decodeJson);
+        numEncontrados = listaIglesias.iglesias!.length.toString();
+      });
+    } finally {
+      // _myLocation();
+    }
+  }
+
+  void myLocation() async {
+    try {
+      var headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-Authorization": "ipue ${box.read('token')}",
+      };
+
       String distancia = "5";
 
       var url = Uri.parse(
@@ -160,7 +192,7 @@ class _MapIglesiasState extends State<MapIglesias>
       mapController: mapController,
       options: MapOptions(
         center: LatLng(latitud, longitud),
-        zoom: 12,
+        zoom: 4,
       ),
       nonRotatedChildren: [
         AttributionWidget.defaultWidget(
