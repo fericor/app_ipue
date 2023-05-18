@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:app_ipue/pages/dashborad.dart';
 import 'package:app_ipue/pages/map_iglesias.dart';
 import 'package:app_ipue/utilities/widgets_utils.dart';
 import 'package:http/http.dart' as http;
@@ -97,7 +96,7 @@ class _SplashMapPageState extends State<SplashMapPage> {
         children: const [
           Image(
             image: AssetImage("assets/images/splash.png"),
-            width: 400,
+            width: 300,
           ),
         ],
       ),
@@ -115,7 +114,7 @@ class _SplashMapPageState extends State<SplashMapPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text(
-                "¡Encuentra y únete a tu círculo ahora!",
+                "¡Bienvenid@ a nuestro directorio!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: IpueColors.cBlanco,
@@ -127,7 +126,7 @@ class _SplashMapPageState extends State<SplashMapPage> {
                 height: 15,
               ),
               Text(
-                "Solución para que todas las personas apasionadas encuentren amigos con la misma pasión en el mundo.",
+                "Nuestra plataforma te permite buscar fácilmente información de nuestras iglesias en tu área.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: IpueColors.cBlanco,
@@ -170,7 +169,7 @@ class _SplashMapPageState extends State<SplashMapPage> {
             ),
             child: Center(
               child: Text(
-                "EMPEZAR",
+                "E M P E Z A R",
                 style: TextStyle(
                   color: IpueColors.cBlanco,
                   fontFamily: "Roboto",

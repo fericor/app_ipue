@@ -75,10 +75,10 @@ class _MapPageState extends State<MapPage> {
               height: 80,
               width: 80,
               point: LatLng(
-                double.parse(element.latitud!),
-                double.parse(element.longitud!),
+                element.latitud!,
+                element.longitud!,
               ),
-              builder: (ctx) => _markerItem(element.id!),
+              builder: (ctx) => _markerItem(element.id.toString()!),
             ),
           );
         }
@@ -511,9 +511,8 @@ class _MapPageState extends State<MapPage> {
                       radius: 18,
                       backgroundColor: IpueColors.cPrimario,
                       child: IconButton(
-                        onPressed: () => _openPopupMap(
-                            double.parse(item.latitud!),
-                            double.parse(item.longitud!)),
+                        onPressed: () =>
+                            _openPopupMap(item.latitud!, item.longitud!),
                         icon: const Icon(
                           Icons.location_on,
                           size: 18.0,

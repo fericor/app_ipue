@@ -25,19 +25,25 @@ class IglesiasModel {
 }
 
 class DataIglesias {
-  String? id;
-  String? idIglesia;
+  int? id;
+  int? idIglesia;
   String? titulo;
   String? direccion;
+  String? comunidad;
+  String? provincia;
+  String? ciudad;
+  String? distrito;
+  String? region;
+  String? zona;
   String? descripcion;
   String? valoracion;
-  String? latitud;
-  String? longitud;
+  double? latitud;
+  double? longitud;
   String? telefono;
   String? web;
   String? timestamp;
-  String? activo;
-  String? idPastor;
+  int? activo;
+  int? idPastor;
   String? nombre;
   String? apellidos;
   String? telefonoFijo;
@@ -50,6 +56,12 @@ class DataIglesias {
       this.idIglesia,
       this.titulo,
       this.direccion,
+      this.comunidad,
+      this.provincia,
+      this.ciudad,
+      this.distrito,
+      this.region,
+      this.zona,
       this.descripcion,
       this.valoracion,
       this.latitud,
@@ -71,6 +83,12 @@ class DataIglesias {
     idIglesia = json['idIglesia'];
     titulo = json['titulo'];
     direccion = json['direccion'];
+    comunidad = json['comunidad'];
+    provincia = json['provincia'];
+    ciudad = json['ciudad'];
+    distrito = json['distrito'];
+    region = json['region'];
+    zona = json['zona'];
     descripcion = json['descripcion'];
     valoracion = json['valoracion'];
     latitud = json['latitud'];
@@ -94,6 +112,12 @@ class DataIglesias {
     data['idIglesia'] = idIglesia;
     data['titulo'] = titulo;
     data['direccion'] = direccion;
+    data['comunidad'] = comunidad;
+    data['provincia'] = provincia;
+    data['ciudad'] = ciudad;
+    data['distrito'] = distrito;
+    data['region'] = region;
+    data['zona'] = zona;
     data['descripcion'] = descripcion;
     data['valoracion'] = valoracion;
     data['latitud'] = latitud;
